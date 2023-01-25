@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'
-import axios from 'axios'
+import { UsersTable } from './components/UsersTable';
 
 class Header extends React.Component {
   render() {
@@ -13,48 +13,30 @@ class Header extends React.Component {
   }
 }
 
-class UsersTable extends React.Component {
-
-  state = {
-    users: []
-  }
-  
-  componentDidMount() {
-    this.refreshTable()
-  }
-
-  refreshTable = () => {
-    axios.get('http://localhost:8080/api/user/all').then(res => {
-      const users = res.data;
-      this.setState({ users });
-    })
-  }
-
-  addTester = () => {
-    axios.post('http://localhost:8080/api/user/test')
-    this.refreshTable()
-  }
-  
-  render() {
-    const listItems = this.state.users
-    .map((user) =>    <li key={user.id}>({user.id}) {user.name}</li>);
-    return (
-      <div>
-        <button onClick={this.refreshTable}>Refresh</button>
-        <button onClick={this.addTester}>Add Tester</button>
-        <ul>{listItems}</ul>
-      </div>
-    );
-  }
-}
-
 class Page extends React.Component {
+  constructor(props) {
+    super(props)
+    this._child = React.createRef()
+  }
+
+  handleRefresh = () => {
+    this._child.current.refreshTable()
+  }
+
+  handleAdd = () => {
+    this._child.current.addTester()
+  }
 
   render() {
+    const table = <UsersTable />
     return (
       <div>
         <Header />
-        <UsersTable />
+        <UsersTable ref={this._child} />
+        <div className='bottom-toolbar'>
+          <button className='button' onClick={this.handleRefresh}>Refresh</button>
+          <button className='button' onClick={this.handleAdd}>Add Tester</button>
+        </div>
       </div>
     );
   }
