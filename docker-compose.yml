@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  database:
+    image: psoir/database
+    build: ./database
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=admin
+    container_name: psoir_database
+  
+  backend:
+    image: psoir/backend
+    build: ./psoir_backend
+    ports:
+      - "8080:8080"
+    container_name: psoir_backend
+
+  frontend:
+    image: psoir/frontend
+    build: ./psoir_frontend
+    ports:
+      - 3000:3000
+    container_name: psoir_frontend
+
