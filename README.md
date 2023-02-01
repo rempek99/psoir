@@ -13,6 +13,12 @@
 2. Uruchom kontener poleceniem : `docker run --name psoir_backend -p 8080:8080 psoir/backend`
 
 
+### psoir_frontend (ReactJS) `./psoir_frontend`
+1. Zbuduj obraz dockerowy poleceniem:
+    `docker build -t psoir/frontend .`
+2. Uruchom kontener poleceniem : `docker run --name psoir_frontend -p 3000:3000 psoir/frontend`
+
+
 [EN]
 ## Programming Object and Distributed Systems
 
@@ -24,3 +30,7 @@
 1. Build the docker image with command: `docker build -t psoir/backend .`
 2. Run the container with command: docker run --name psoir_backend -p 8080:8080 psoir/backend`
 
+
+### psoir_frontend (ReactJS) `./psoir_frontend`
+1. Build the docker image with command: `docker build -t psoir/frontend .`
+2. Run the container with command: docker run --name psoir_frontend -p 3000:3000 psoir/frontend`
