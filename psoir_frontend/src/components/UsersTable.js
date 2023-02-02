@@ -19,14 +19,14 @@ export class UsersTable extends React.Component {
   }
 
   refreshTable = () => {
-    axios.get('http://localhost:8080/api/user/all').then(res => {
+    axios.get('http://10.5.0.6:8080/api/user/all').then(res => {
       const users = res.data;
       this.setState({ users });
     });
   };
 
   addTester = () => {
-    axios.post('http://localhost:8080/api/user/test').then(res => {
+    axios.post('http://10.5.0.6:8080/api/user/test').then(res => {
       this.refreshTable();
     });
   };

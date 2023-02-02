@@ -1,4 +1,13 @@
 version: "3.9"
+
+networks:
+  vlan:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+
 services:
   database:
     image: psoir/database
@@ -8,13 +17,21 @@ services:
     environment:
       - POSTGRES_PASSWORD=admin
     container_name: psoir_database
-  
+    networks:
+      vlan:
+        ipv4_address: 10.5.0.5
+
   backend:
     image: psoir/backend
     build: ./psoir_backend
     ports:
       - "8080:8080"
     container_name: psoir_backend
+    networks:
+      vlan:
+        ipv4_address: 10.5.0.6
+    depends_on:
+      - database
 
   frontend:
     image: psoir/frontend
@@ -22,4 +39,6 @@ services:
     ports:
       - 3000:3000
     container_name: psoir_frontend
-
+    networks:
+      vlan:
+        ipv4_address: 10.5.0.7
