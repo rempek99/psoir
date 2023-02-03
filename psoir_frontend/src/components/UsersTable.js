@@ -3,7 +3,10 @@ import axios from 'axios';
 import { UserTile } from './UserTile';
 import './styles.css'
 
+const URL_BASE='http://localhost:8080/'
+
 export class UsersTable extends React.Component {
+  
 
   state = {
     users: []
@@ -19,17 +22,23 @@ export class UsersTable extends React.Component {
   }
 
   refreshTable = () => {
-    axios.get('http://10.5.0.6:8080/api/user/all').then(res => {
+    axios.get(URL_BASE + 'api/user/all').then(res => {
       const users = res.data;
       this.setState({ users });
     });
   };
 
   addTester = () => {
-    axios.post('http://10.5.0.6:8080/api/user/test').then(res => {
+    axios.post(URL_BASE + 'api/user/test').then(res => {
       this.refreshTable();
     });
   };
+
+  addUser = (username) => {
+    axios.post(URL_BASE + `api/user/add/${username}`).then(res => {
+      this.refreshTable();
+    });
+  }
 
 
   render() {

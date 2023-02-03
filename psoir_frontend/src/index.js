@@ -17,14 +17,24 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this._child = React.createRef()
+    this.state = {username: 'empty'};
   }
 
   handleRefresh = () => {
     this._child.current.refreshTable()
   }
 
-  handleAdd = () => {
+  handleAddTester = () => {
     this._child.current.addTester()
+  }
+
+  handleAddUser = () => {
+    this._child.current.addUser(this.state.username)
+    console.log(this.state.username)
+  }
+
+  handleChangeUsername = (event) => {
+    this.setState({username: event.target.value});
   }
 
   render() {
@@ -35,7 +45,9 @@ class Page extends React.Component {
         <UsersTable ref={this._child} />
         <div className='bottom-toolbar'>
           <button className='button' onClick={this.handleRefresh}>Refresh</button>
-          <button className='button' onClick={this.handleAdd}>Add Tester</button>
+          <button className='button' onClick={this.handleAddUser}>Add User</button>
+          <input id='username' className='input' placeholder="Username" type='text' onChange={this.handleChangeUsername}/>
+          <button className='button right' onClick={this.handleAddTester}>Add Tester</button>
         </div>
       </div>
     );
