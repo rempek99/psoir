@@ -1,5 +1,6 @@
-.user-tile{
+.user-tile {
     /* border: solid; */
+    position: relative;
     font-size: 20px;
     font-weight: 1000;
     padding: 5%;
@@ -12,10 +13,33 @@
     border-radius: 10px;
 }
 
-.user-tile:hover{
-    background-color: rgba(41, 90, 168, 0.5); 
+.user-tile:hover {
+    background-color: rgba(41, 90, 168, 0.9);
     transition: 0.5s;
-    border-radius: 25px;
+}
+
+.delete-but {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    background-color: transparent;
+    background-image: url("/public/trash.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: solid;
+    border-width: 2px;
+    border-color: transparent;
+    box-sizing: content-box;
+    border-radius: 5px;
+}
+.delete-but:hover { 
+    border-color: rgba(255,255,255,0.2);
 }
 
 .users-table {
@@ -23,16 +47,17 @@
     padding: 1%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    width: 40%;
+    width: 98%;
     /* grid-template-rows: 200px 200px 200px; */
     gap: 10px 40px;
     overflow: auto;
-    margin:0;
+    margin: 0;
 }
 
 .user-tile:nth-child(2n+2) {
-    background-color: rgb(2, 36, 87); 
+    background-color: rgb(2, 36, 87);
 }
+
 .user-tile:nth-child(2n+2):hover {
-    background-color: rgb(2, 36, 87,0.5);
+    background-color: rgb(2, 36, 87, 0.9);
 }

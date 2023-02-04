@@ -38,7 +38,6 @@ class Page extends React.Component {
   }
 
   render() {
-    const table = <UsersTable />
     return (
       <div>
         <Header />

@@ -3,14 +3,11 @@ import './styles.css'
 
 export class UserTile extends React.Component {
 
-  constructor(props) {
-    super(props);
-    
-  }
 
   render() {
     return (
       <div className='user-tile'>
+        <div className='delete-but' onClick={this.props.handleDelete}/>
         {this.props.name}
       </div>
     );

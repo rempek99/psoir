@@ -25,4 +25,8 @@ public class UserService {
     public List<User> getAll() {
         return IterableUtils.toList(userRepository.findAll());
     }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 }
